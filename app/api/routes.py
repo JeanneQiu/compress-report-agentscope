@@ -184,7 +184,8 @@ async def summarize_report_stream(
     requirements: str = Form(""),
     files: List[UploadFile] = File(...),
 ):
-    """生成报告摘要（流式 SSE）"""    # 验证报告类型（去除前后空格）
+    """生成报告摘要（流式 SSE）"""
+    # 验证报告类型（去除前后空格）
     report_type = report_type.strip()
     valid_types = [rt["value"] for rt in config.get_report_types()]
     if report_type not in valid_types:

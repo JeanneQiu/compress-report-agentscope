@@ -32,7 +32,7 @@ class ReportSummarizer:
             },
             generate_kwargs={
                 "temperature": self.config.LLM_TEMPERATURE,
-                "max_tokens": 2048,  # 降低到2048以避免过度生成
+                "max_tokens": 8196,  
             },
         )
     
@@ -135,7 +135,7 @@ class ReportSummarizer:
             prompt: 提示词
             trace_id: 追踪ID
             stage: 阶段名称
-            stream_callback: 流式回调函数，接收增量内容
+            stream_callback: 流式回调函数，接收增量内容（只在验证阶段使用）
             
         Returns:
             str: 完整响应文本
@@ -173,8 +173,8 @@ class ReportSummarizer:
                     delta = current_text[len(prev_text):]
                     if delta:  # 如果有增量内容
                         full_text = current_text
-                        # 调用流式回调
-                        if stream_callback:
+                        # 只在验证阶段调用流式回调
+                        if stream_callback and stage == "validate":
                             await stream_callback(delta)
                         prev_text = current_text
                 else:
@@ -396,5 +396,5 @@ def init_agentscope():
         project="compress_report",
         name="report_summarizer",
         logging_path="./logs/agentscope.log",
-        logging_level="INFO",
+        logging_level="DEBUG",
     )

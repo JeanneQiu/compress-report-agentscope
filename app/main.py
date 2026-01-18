@@ -1,16 +1,22 @@
 """主程序入口"""
 import uvicorn
 import logging
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import Config
 from app.api.routes import router
 from app.workflow.summarizer import init_agentscope
 
-# 配置日志
+os.makedirs("logs", exist_ok=True)
+# 配置日志 - 同时输出到控制台和文件
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(),  # 输出到控制台
+        logging.FileHandler('logs/app.log', encoding='utf-8')  # 输出到文件
+    ]
 )
 logger = logging.getLogger(__name__)
 

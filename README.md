@@ -270,7 +270,7 @@ curl -X POST "http://localhost:6060/v1/report/summarize" \
   -F "report_type=用电需求预测报告" \
   -F "max_words=8196" \
   -F "max_paragraphs=100" \
-  -F "requirements=必须包含数据来源" \
+  -F "requirements=" \
   -F "files=@/path/to/file1.pdf" \
   -F "files=@/path/to/file2.docx"
 ```
@@ -282,7 +282,7 @@ curl -X POST "http://localhost:6060/v1/report/summarize/stream" \
   -F "report_type=用电需求预测报告" \
   -F "max_words=8196" \
   -F "max_paragraphs=100" \
-  -F "requirements=必须包含数据来源" \
+  -F "requirements=" \
   -F "files=@/path/to/file1.pdf" \
   -F "files=@/path/to/file2.docx" \
   -H "Accept: text/event-stream"
@@ -307,7 +307,7 @@ data = {
     "report_type": "用电需求预测报告",
     "max_words": 8196,
     "max_paragraphs": 100,
-    "requirements": "必须包含数据来源",
+    "requirements": "",
 }
 response = requests.post(url, files=files, data=data)
 print(response.json())
