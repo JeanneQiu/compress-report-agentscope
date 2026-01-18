@@ -1,0 +1,17 @@
+# FastAPI 和 Web 框架
+fastapi>=0.104.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.6
+sse-starlette>=1.8.2
+
+# AgentScope
+agentscope>=0.0.1
+
+# 文档解析
+markitdown>=0.0.1
+
+# 数据验证
+pydantic>=2.6.1
+
+# 其他依赖
+python-dotenv>=1.0.0
